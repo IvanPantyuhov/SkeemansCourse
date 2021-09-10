@@ -53,7 +53,10 @@ else:
 print("Test 2 - task")
 print("x ^ 2 = 16")
 x = int(input())
-if x == "4":
+if x == 4 or -4:
+    print("Great, go to next")
+    point = point + 1
+if x == "-4":
     print("Great, go to next")
     point = point + 1
 else:

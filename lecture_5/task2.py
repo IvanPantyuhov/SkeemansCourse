@@ -1,11 +1,8 @@
-a, b = input("Enter a two value: ").split()
-def rangers(a, b):
-    for i in range(a, b):
-        print(i)
-            #except;
-        #if:
-        #print("Error, try again with two numbers")
-    #except:
-        #if:
-        #print("Error, try again")
-            #return to try3
+try:
+    a, b = input("Select numbers: ").split()
+    a, b = int(a), int(b)
+except ValueError:
+    print("Error")
+else:
+    for i in range (a, b + 1)
+        print(i, end=" ")

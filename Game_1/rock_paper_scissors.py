@@ -1,11 +1,11 @@
-from random import choice
+import random
 
 values = ['rock', 'paper', 'scissors']
 print('Welcome to the games "ROCK, PAPER & SCISSORS"')
 
 while True:
     user = input('Make a choice "Rock, Paper, Scissors": ').lower()
-    computer = choice(values)
+    computer = random.choice(values)
     print(f"\nYou chose {user.upper()}, computer chose {computer.upper()}.\n")
 
     if user == computer:

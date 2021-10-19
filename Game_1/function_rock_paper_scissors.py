@@ -1,43 +1,61 @@
 import random
 
-possible_actions = ["rock", "paper", "scissors"]
-computer = random.choice(possible_actions)
+def choices_of_players():
+    values = ['rock', 'scissors', 'paper']
 
+    while True:
+        user_choice = input('Make a choice "Rock, Paper, Scissors": ').lower()
+        if user_choice not in values:
+            print('Wrong value!')
+            continue
+        else:
+            print('YOU: ' + user_choice)
+            computers_choice = random.choice(values)
+            print(f'COMPUTER: ' + computers_choice)
+        return user_choice, computers_choice
 
-class Game_Rock_Paper_Scissors:
-    def __init__(self, player, computer):
-        self.player = player
-        self.computer = computer
+def same_values():
+    while True:
+        user_choice, computers_choice = choices_of_players()
+        if user_choice != computers_choice:
+            break
+        print('Tie, try again')
+    return user_choice, computers_choice
 
-    def Game(self):
-        print('Welcome to the games "ROCK, PAPER & SCISSORS"')
-        if self.player == self.computer:
-            print("Tie, try again")
-        elif self.player == "rock":
-            if self.computer == "paper":
-                return "You lose!{1} covers {0}".format(self.computer, self.player)
-            else:
-                return "You win!{0} smashes {1}".format(self.player, self.computer)
-        elif self.player == "paper":
-            if self.computer == "scissors":
-                return "You lose!{1} cut {0}".format(self.computer, self.player)
-            else:
-                return "You win! {0} covers {1}".format(self.player, self.computer)
-        elif self.player == "scissors":
-            if self.computer == "rock":
-                return "You lose...{1} smashes {0}".format(self.computer, self.player)
-            else:
-                return "You win!{1} cut {0}".format(self.player, self.computer)
+def is_won(user_choice, computers_choice):
+    if user_choice == 'paper':
+        if computers_choice == 'rock':
+            return True
+        elif computers_choice == 'scissors':
+            return False
 
+    elif user_choice == 'rock':
+        if computers_choice == 'scissors':
+            return True
+        elif computers_choice == 'paper':
+            return False
+
+    elif user_choice == 'scissors':
+        if computers_choice == 'paper':
+            return True
+        elif computers_choice == 'rock':
+            return False
+
+def is_repeat():
+    return input("Would you like to play again? (yes/no): ").lower() == 'yes'
+
+def main():
+    print('Welcome to the games "ROCK, PAPER & SCISSORS"')
+    while True:
+        players_selection, computers_selection = same_values()
+        if is_won(players_selection, computers_selection):
+            print('You won! Congrats')
+        else:
+            print('Oops! You lose! Well, don\'t be discouraged!')
+        if is_repeat():
+            continue
+        else:
+            return print('See you next time')
 
 if __name__ == '__main__':
-    player = input('Make a choice "Rock, Paper, Scissors": ').lower()
-
-    if player != "rock" and player != "paper" and player != "scissors":
-        print("That's not a valid play. Check your spelling!")
-
-    else:
-        print(f"\nYou chose {player}, computer chose {computer}.\n")
-        playing = Game_Rock_Paper_Scissors(player, computer)
-        print(playing.Game())
-        print("Game end")
+    main()

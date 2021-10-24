@@ -4,5 +4,5 @@ try:
 except ValueError:
     print("Error")
 else:
-    for i in range (a, b + 1)
+    for i in range (a, b + 1):
         print(i, end=" ")

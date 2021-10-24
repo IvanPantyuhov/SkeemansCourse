@@ -1,41 +1,28 @@
-class Vehicle:
-    def __init__(self, brand, year_of_production, max_speed):
-        self.brand = brand
-        self.year_of_production = year_of_production
-        self.max_speed = max_speed
+from random import shuffle
 
-    def move(self):
-        print(f'{self.brand} is moving with max speed {self.max_speed}!')
+class Card:
+    def __init__(self, suit, value):
+        self.suit = suit
+        self.value = value
 
-    def set_max_speed(self, max_speed):
-        self.max_speed = max_speed
+class Deck:
+    def __init__(self):
+        suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+        values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+        self.cards = [Card(suit, value) for suit in suits for value in values]
 
-    @property
-    def max_speed_squared(self):
-        return self.max_speed ** 2
+    def __repr__(self):
+        return "Cards remaining in deck: ()".format(len(self.cards))
 
+    def shuffle(self):
+        if len(self.cards) == 52:
+            shuffle(self.cards)
+            return self
+        else:
+            raise ValueError("Only full decks can be shuffled")
 
-class Bus(Vehicle):
-
-    def move(self):
-        return f'Bus {self.brand} is moving!'
-
-
-if __name__ == '__main__':
-    chevrolet_camaro = Vehicle("Chevrolet Camaro", 1977, 240)
-    chevrolet_camaro.move()
-
-    bmw = Vehicle("BMW", 1977, 240)
-
-    bmw.set_max_speed(70)
-    print(bmw.max_speed_squared)
-
-    concorde = Vehicle("Concorde", 1965, 2179)
-    hms_defender = Vehicle("HMS Defender", 2006, 59)
-
-    some_bus = Bus('BMW', 2008, 70)
-
-    chevrolet_camaro.move()
-    concorde.move()
-    hms_defender.move()
-    some_bus.move()
+    def deal(self):
+        if len(self.cards) != 0:
+            return self.cards.pop()
+        else:
+            raise ValueError("All cards have been dealt")

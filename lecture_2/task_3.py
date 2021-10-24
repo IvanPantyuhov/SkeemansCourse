@@ -1,3 +1,5 @@
-word = str(input("Write the palidrome word - "))
-reversed=''.join(reversed(word))
-print(reversed)
+word = str(input("Write the palindrome word - "))
+if word.replace() == word
+    print("It is palindrom")
+else:
+    print("It is not palindrom")

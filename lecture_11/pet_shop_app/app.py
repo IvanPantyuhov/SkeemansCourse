@@ -14,7 +14,7 @@ def store_data(data):
 @app.route('/items/', methods=['GET'])
 def get_all_items():
     return Response(
-        json.dump(get_data()),
+        json.dumps(get_data()),
         mimetype='application/json'
     )
 
@@ -34,6 +34,7 @@ def update_pet_item(item_id):
     for i in range(len(data)):
         if data[i]["id"] == item_id:
             data[i]["title"] = request.get_json()["title"]
+            data[i]["amount"] = request.get_json()["amount"]
             store_data(data)
             break
     else:

@@ -15,7 +15,7 @@ def store_data(data):
 def get_all_items():
     return Response(
         json.dumps(get_data()),
-        mimetype='application/json'
+        mimetype='application/json',
     )
 
 @app.route('/items/<int:item_id>', methods=['GET'])
@@ -42,7 +42,8 @@ def update_pet_item(item_id):
     return Response(
         json.dumps(data),
         status=200,
-        mimetype='application/json')
+        mimetype='application/json',
+    )
 
 @app.route('/items/', methods=['POST'])
 def create_pet_item():
@@ -54,7 +55,7 @@ def create_pet_item():
         "amount": request.get_json()["amount"]
     })
     store_data(data)
-    return Response (
+    return Response(
         json.dumps({
             "item_id": latest_id }),
         mimetype='application/json',

@@ -4,11 +4,11 @@ from flask import Flask, request, Response
 app = Flask(__name__)
 
 def get_data():
-    with open('storage.json', 'r') as f:
+    with open('storage2.json', 'r') as f:
         return json.load(f)
 
 def store_data(data):
-    with open('storage.json', 'w') as f:
+    with open('storage2.json', 'w') as f:
         return json.dump(data, f)
 
 @app.route('/pray-requests/', methods=['GET'])

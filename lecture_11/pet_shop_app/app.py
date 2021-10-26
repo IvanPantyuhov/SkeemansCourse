@@ -1,20 +1,20 @@
 import json
-from flask import Flask, Response, request
+from flask import Flask, request, Response
 
 app = Flask(__name__)
 
 def get_data():
-    with open('storage.json', 'r') as f:
+    with open('../storage3.json', 'r') as f:
         return json.load(f)
 
 def store_data(data):
-    with open('storage.json', 'w') as f:
-        return json.dump(data, f)
+    with open('../storage3.json', 'w') as f:
+        json.dump(data, f)
 
 @app.route('/items/', methods=['GET'])
 def get_all_items():
     return Response(
-        json.dumps(get_data()),
+        json.dump(get_data()),
         mimetype='application/json'
     )
 
@@ -34,7 +34,6 @@ def update_pet_item(item_id):
     for i in range(len(data)):
         if data[i]["id"] == item_id:
             data[i]["title"] = request.get_json()["title"]
-            data[i]["amount"] = request.get_json()["amount"]
             store_data(data)
             break
     else:

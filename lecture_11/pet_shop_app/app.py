@@ -4,11 +4,11 @@ from flask import Flask, request, Response
 app = Flask(__name__)
 
 def get_data():
-    with open('../storage3.json', 'r') as f:
+    with open('storage.json', 'r') as f:
         return json.load(f)
 
 def store_data(data):
-    with open('../storage3.json', 'w') as f:
+    with open('storage.json', 'w') as f:
         json.dump(data, f)
 
 @app.route('/items/', methods=['GET'])
